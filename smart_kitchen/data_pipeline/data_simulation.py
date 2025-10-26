@@ -48,7 +48,8 @@ def simulate_all_devices(output_dir="simulated_data"):
         df = generate_device_data(device, start_time)
         path = os.path.join(output_dir, f"{device}.csv")
         df.to_csv(path, index=False)
-        print(f"✅ Saved simulated data for {device} -> {path}")
+        # print(f"✅ Saved simulated data for {device} -> {path}")
+        print(f"Saved simulated data for {device} -> {path}")
 
 
 if __name__ == "__main__":

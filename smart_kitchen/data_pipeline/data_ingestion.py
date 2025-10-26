@@ -20,7 +20,8 @@ def create_database(db_path="smart_kitchen.db"):
     """)
     conn.commit()
     conn.close()
-    print(f"✅ Database created or verified at {db_path}")
+    # print(f"✅ Database created or verified at {db_path}")
+    print(f"Database created or verified at {db_path}")
 
 
 def upload_csv_to_db(csv_path, db_path="smart_kitchen.db"):
@@ -31,7 +32,8 @@ def upload_csv_to_db(csv_path, db_path="smart_kitchen.db"):
     df["device"] = device
     df.to_sql("sensor_data", conn, if_exists="append", index=False)
     conn.close()
-    print(f"📤 Uploaded {device} data to database.")
+    # print(f"📤 Uploaded {device} data to database.")
+    print(f"Uploaded {device} data to database.")
 
 
 def upload_all_data(data_dir="simulated_data"):

@@ -18,7 +18,8 @@ def send_local_alert(device, message):
     os.makedirs(os.path.dirname(ALERT_LOG_PATH), exist_ok=True)
     with open(ALERT_LOG_PATH, "a") as log:
         log.write(f"[ALERT] {device}: {message}\n")
-    print(f"🚨 ALERT for {device}: {message}")
+    # print(f"🚨 ALERT for {device}: {message}")
+    print(f"ALERT for {device}: {message}")
 
 
 # === OPTIONAL EMAIL FUNCTION (for future AWS SNS or SMTP setup) ===
@@ -39,7 +40,8 @@ def send_email_alert(to_email, subject, message):
 # === CHECK FOR ANOMALIES ===
 def check_anomalies():
     if not os.path.exists(ANOMALY_RESULTS):
-        print("⚠️ No anomaly results found.")
+        # print("⚠️ No anomaly results found.")
+        print("No anomaly results found.")
         return
     df = pd.read_csv(ANOMALY_RESULTS)
     for device in df["device"].unique():
@@ -76,7 +78,8 @@ def check_anomalies():
 def check_predictions():
     """Check predictive maintenance based on latest sensor readings and trained model."""
     if not os.path.exists(MODEL_PATH):
-        print("⚠️ Predictive maintenance model not found.")
+        # print("⚠️ Predictive maintenance model not found.")
+        print("Predictive maintenance model not found.")
         return
 
     # Load model
@@ -84,7 +87,8 @@ def check_predictions():
 
     # Load latest sensor data
     if not os.path.exists(DB_PATH):
-        print("⚠️ Database not found.")
+        # print("⚠️ Database not found.")
+        print("Database not found.")
         return
 
     conn = sqlite3.connect(DB_PATH)
@@ -92,7 +96,8 @@ def check_predictions():
     conn.close()
 
     if df.empty:
-        print("⚠️ No sensor data found in database.")
+        # print("⚠️ No sensor data found in database.")
+        print("No sensor data found in database.")
         return
 
     # === Preprocess data ===
@@ -122,19 +127,24 @@ def check_predictions():
         if future_temp_pred > avg_temp_recent + TEMP_THRESHOLD:
             send_local_alert(device, f"Predicted overheating: {future_temp_pred:.1f}°C (avg: {avg_temp_recent:.1f}°C)")
         else:
-            print(f"[✓] {device}: Stable (predicted {future_temp_pred:.1f}°C, avg {avg_temp_recent:.1f}°C)")
+            # print(f"[✓] {device}: Stable (predicted {future_temp_pred:.1f}°C, avg {avg_temp_recent:.1f}°C)")
+            print(f"{device}: Stable (predicted {future_temp_pred:.1f}°C, avg {avg_temp_recent:.1f}°C)")
 
-    print("✅ Predictive maintenance check completed.")
+    # print("✅ Predictive maintenance check completed.")
+    print("Predictive maintenance check completed.")
 
 
 def run_alert_system():
-    print("🔎 Checking anomalies...")
+    # print("🔎 Checking anomalies...")
+    print("Checking anomalies...")
     check_anomalies()
 
-    print("🔮 Checking predictive maintenance...")
+    # print("🔮 Checking predictive maintenance...")
+    print("Checking predictive maintenance...")
     check_predictions()
 
-    print("✅ Alert system finished checking.")
+    # print("✅ Alert system finished checking.")
+    print("Alert system finished checking.")
 
 
 if __name__ == "__main__":
