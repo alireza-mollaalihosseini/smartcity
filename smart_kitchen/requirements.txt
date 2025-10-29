@@ -5,3 +5,4 @@ pydantic
 requests
 streamlit
 matplotlib
+scikit-learn

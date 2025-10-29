@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smart-kitchen-deployment
+  namespace: smart-kitchen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-kitchen
+  template:
+    metadata:
+      labels:
+        app: smart-kitchen
+    spec:
+      containers:
+      - name: smart-kitchen-container
+        image: smart-kitchen:latest
+        imagePullPolicy: Never  # important for local images in Minikube
+        ports:
+        - containerPort: 8501
+        env:
+        - name: ENV
+          value: "development"
+        - name: DB_PATH
+          value: "/data/smart_kitchen.db"
+        volumeMounts:
+        - name: data-storage
+          mountPath: /data
+      volumes:
+      - name: data-storage
+        emptyDir: {}

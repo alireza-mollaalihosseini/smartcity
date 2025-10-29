@@ -1,0 +1,38 @@
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: infrastructure
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: smart_kitchen
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: smart_trains
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: smart_energy
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: infrastructure
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: smart-kitchen
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: smart-trains
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: smart-energy
