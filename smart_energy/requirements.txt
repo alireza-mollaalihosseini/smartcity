@@ -1,0 +1,10 @@
+numpy
+pandas
+sqlalchemy
+psycopg2-binary
+scikit-learn
+matplotlib
+joblib
+requests
+boto3           # optional for MinIO
+streamlit       # optional dashboard

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: energy-worker
+  namespace: smart-energy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: energy-worker
+  template:
+    metadata:
+      labels:
+        app: energy-worker
+    spec:
+      containers:
+      - name: energy-worker
+        image: smartcity-energy-worker:0.1
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: ENERGY_DB_URL
+            value: postgresql://admin:admin123@postgres.infrastructure.svc.cluster.local:5432/smartcity
+        command: ["sh", "-c"]
+        args:
+          - |
+            # run anomaly check periodically
+            while true; do
+              python /app/src/anomaly_detection_energy.py
+              python /app/src/forecasting.py
+              sleep 300
+            done

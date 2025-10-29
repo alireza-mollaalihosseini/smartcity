@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: energy-simulator
+  namespace: smart-energy
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: sim
+            image: smartcity-energy-simulator:0.1
+            imagePullPolicy: IfNotPresent
+            env:
+              - name: ENERGY_DB_URL
+                value: postgresql://admin:admin123@postgres.infrastructure.svc.cluster.local:5432/smartcity
+            command: ["python", "/app/data_pipeline/simulate_meters.py"]
+          restartPolicy: OnFailure
