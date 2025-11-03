@@ -3,3 +3,4 @@
 [ALERT] oven: High anomaly rate detected (7.5%)
 [ALERT] oven: High anomaly rate detected (7.5%)
 [ALERT] oven: High anomaly rate detected (7.5%)
+[ALERT] oven: High anomaly rate detected (7.5%)
