@@ -1,0 +1,42 @@
+services:
+  # MQTT Broker
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0
+    ports:
+      - "1883:1883"  # Local access
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf  # Optional: Add auth/TLS later
+    restart: unless-stopped
+
+  # Your App (simulation + ingestion + alerts + models)
+  app:
+    build: .
+    depends_on:
+      - mqtt-broker
+    volumes:
+      - ./kitchen.db:/app/kitchen.db  # Persistent DB (create empty file if missing)
+      - ./models:/app/models  # For ML outputs
+      - ./alerts:/app/alerts  # Logs
+    environment:
+      - MQTT_BROKER=mqtt-broker
+      - MQTT_PORT=1883
+    command: python main_mqtt.py
+    restart: unless-stopped
+
+  # Dashboard (separate for hot-reload)
+  dashboard:
+    build: .
+    depends_on:
+      - mqtt-broker
+      - app  # Wait for data
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./dashboard:/app/dashboard  # For dev edits
+      - ./kitchen.db:/app/kitchen.db  # Shared DB access
+      - ./models:/app/models  # For anomalies
+      - ./alerts:/app/alerts  # For logs
+    environment:
+      - MQTT_BROKER=mqtt-broker
+    command: streamlit run dashboard/dashboard_app_mqtt.py --server.port=8501 --server.address=0.0.0.0
+    restart: unless-stopped

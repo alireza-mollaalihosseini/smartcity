@@ -6,8 +6,10 @@ from pathlib import Path
 
 # Compute project root: Up one level from script dir
 project_root = Path(__file__).parent.parent.absolute()
-DB_PATH = project_root / "kitchen.db"  # Single DB in root
-MQTT_BROKER = 'localhost'
+# DB_PATH = project_root / "kitchen.db"  # Single DB in root
+DB_PATH = "/app/kitchen.db"
+# MQTT_BROKER = 'localhost'
+MQTT_BROKER = os.getenv('MQTT_BROKER', 'localhost')
 MQTT_PORT = 1883
 MQTT_PREFIX = 'smart_kitchen/'
 # DB_PATH = os.path.join(base_dir, "data_pipeline", "kitchen.db") # '/data_pipeline/kitchen.db'

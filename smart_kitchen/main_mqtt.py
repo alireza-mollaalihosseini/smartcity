@@ -54,15 +54,16 @@ def main():
     print("🤖 SMART KITCHEN AUTOMATION STARTED (Kafka Streaming Mode)")
     print("==============================\n")
 
-    base_dir = os.path.dirname(os.path.abspath(__file__))
+    base_dir = os.path.dirname(__file__)
+    os.path.join()
 
     # === Define all important paths ===
-    simulate_path = os.path.join(base_dir, "data_pipeline", "data_mqtt.py")
-    ingestion_path = os.path.join(base_dir, "data_pipeline", "data_ingestion_mqtt.py")
-    anomaly_model_path = os.path.join(base_dir, "src", "anomaly_detection", "detect_anomaly.py")
-    predictive_model_path = os.path.join(base_dir, "src", "predictive_maintenance", "train_predictor.py")
-    alert_system_path = os.path.join(base_dir, "alerts", "alert_system_mqtt.py")
-    dashboard_path = os.path.join(base_dir, "dashboard", "dashboard_app_mqtt.py")
+    simulate_path = os.path.join(base_dir, '..', "data_pipeline", "data_mqtt.py")
+    ingestion_path = os.path.join(base_dir, '..', "data_pipeline", "data_ingestion_mqtt.py")
+    anomaly_model_path = os.path.join(base_dir, '..', "src", "anomaly_detection", "detect_anomaly.py")
+    predictive_model_path = os.path.join(base_dir, '..', "src", "predictive_maintenance", "train_predictor.py")
+    alert_system_path = os.path.join(base_dir, '..', "alerts", "alert_system_mqtt.py")
+    dashboard_path = os.path.join(base_dir, '..', "dashboard", "dashboard_app_mqtt.py")
 
     # Background services dict (for management)
     backgrounds = {}

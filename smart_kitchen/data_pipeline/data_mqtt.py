@@ -7,7 +7,8 @@ from datetime import datetime, timedelta
 import paho.mqtt.client as mqtt
 
 # MQTT config (local)
-MQTT_BROKER = 'localhost'
+# MQTT_BROKER = 'localhost'
+MQTT_BROKER = os.getenv('MQTT_BROKER', 'localhost')
 MQTT_PORT = 1883
 MQTT_PREFIX = 'smart_kitchen/'
 QOS = 1  # At-least-once delivery

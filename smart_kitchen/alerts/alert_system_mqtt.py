@@ -43,10 +43,12 @@
 # if __name__ == "__main__":
 #     run_alert_consumer()
 
+import os
 import json
 import paho.mqtt.client as mqtt
 
-MQTT_BROKER = 'localhost'
+# MQTT_BROKER = 'localhost'
+MQTT_BROKER = os.getenv('MQTT_BROKER', 'localhost')
 MQTT_PORT = 1883
 MQTT_PREFIX = 'smart_kitchen/'
 

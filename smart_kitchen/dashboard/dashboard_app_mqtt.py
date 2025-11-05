@@ -96,11 +96,13 @@ import paho.mqtt.client as mqtt
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 ALERT_LOG = os.path.join(base_dir, "../alerts/alert_log.txt")  # Fallback
-DB_PATH = os.path.join(base_dir, "../kitchen.db")
+# DB_PATH = os.path.join(base_dir, "../kitchen.db")
+DB_PATH = "/app/kitchen.db"
 ANOMALY_PATH = os.path.join(base_dir, "../models/results/anomaly_results.csv")
 
 # MQTT config
-MQTT_BROKER = 'localhost'
+# MQTT_BROKER = 'localhost'
+MQTT_BROKER = os.getenv('MQTT_BROKER', 'localhost')
 MQTT_PORT = 1883
 MQTT_PREFIX = 'smart_kitchen/'
 ALERT_TOPIC = MQTT_PREFIX + 'alerts'
