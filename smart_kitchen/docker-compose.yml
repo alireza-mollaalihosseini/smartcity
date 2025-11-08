@@ -1,11 +1,55 @@
+# services:
+#   # MQTT Broker
+#   mqtt-broker:
+#     image: eclipse-mosquitto:2.0
+#     ports:
+#       - "1883:1883"  # Local access
+#     volumes:
+#       - ./config:/mosquitto/config  # Optional: Add auth/TLS later
+#     restart: unless-stopped
+
+#   # Your App (simulation + ingestion + alerts + models)
+#   app:
+#     build: .
+#     depends_on:
+#       - mqtt-broker
+#     volumes:
+#       - ./kitchen.db:/app/kitchen.db  # Persistent DB (create empty file if missing)
+#       - ./models:/app/models  # For ML outputs
+#       - ./alerts:/app/alerts  # Logs
+#     environment:
+#       - MQTT_BROKER=mqtt-broker
+#       - MQTT_PORT=1883
+#     command: python main_mqtt.py
+#     restart: unless-stopped
+
+#   # Dashboard (separate for hot-reload)
+#   dashboard:
+#     build: .
+#     depends_on:
+#       - mqtt-broker
+#       - app  # Wait for data
+#     ports:
+#       - "8501:8501"
+#     volumes:
+#       - ./dashboard:/app/dashboard  # For dev edits
+#       - ./kitchen.db:/app/kitchen.db  # Shared DB access
+#       - ./models:/app/models  # For anomalies
+#       - ./alerts:/app/alerts  # For logs
+#     environment:
+#       - MQTT_BROKER=mqtt-broker
+#     command: streamlit run dashboard/dashboard_app_mqtt.py --server.port=8501 --server.address=0.0.0.0
+#     restart: unless-stopped
+
 services:
   # MQTT Broker
   mqtt-broker:
     image: eclipse-mosquitto:2.0
     ports:
-      - "1883:1883"  # Local access
+      - "1883:1883"  # Local access (internal on AWS)
     volumes:
-      - ./config:/mosquitto/config  # Optional: Add auth/TLS later
+      - ./config:/mosquitto/config
+      - mosquitto-data:/mosquitto/data  # Persistence
     restart: unless-stopped
 
   # Your App (simulation + ingestion + alerts + models)
@@ -13,13 +57,18 @@ services:
     build: .
     depends_on:
       - mqtt-broker
+    ports:
+      - "8080:8080"  # Health checks
     volumes:
-      - ./kitchen.db:/app/kitchen.db  # Persistent DB (create empty file if missing)
-      - ./models:/app/models  # For ML outputs
-      - ./alerts:/app/alerts  # Logs
+      - ./kitchen.db:/app/kitchen.db  # Bind mount for file (create empty ./kitchen.db if missing)
+      - ./models:/app/models  # Bind for dir (or use named below)
+      - ./alerts:/app/alerts  # Bind for dir
     environment:
       - MQTT_BROKER=mqtt-broker
       - MQTT_PORT=1883
+      - DB_PATH=/app/kitchen.db
+      - MODELS_PATH=/app/models
+      - ALERTS_PATH=/app/alerts
     command: python main_mqtt.py
     restart: unless-stopped
 
@@ -28,15 +77,31 @@ services:
     build: .
     depends_on:
       - mqtt-broker
-      - app  # Wait for data
-    ports:
-      - "8501:8501"
+      - app
     volumes:
-      - ./dashboard:/app/dashboard  # For dev edits
-      - ./kitchen.db:/app/kitchen.db  # Shared DB access
-      - ./models:/app/models  # For anomalies
-      - ./alerts:/app/alerts  # For logs
+      - ./dashboard:/app/dashboard  # Dev edits
+      - ./kitchen.db:/app/kitchen.db  # Shared bind
+      - ./models:/app/models  # Shared
+      - ./alerts:/app/alerts  # Shared
     environment:
       - MQTT_BROKER=mqtt-broker
+      - DB_PATH=/app/kitchen.db
+      - MODELS_PATH=/app/models
+      - ALERTS_PATH=/app/alerts
     command: streamlit run dashboard/dashboard_app_mqtt.py --server.port=8501 --server.address=0.0.0.0
     restart: unless-stopped
+
+  # Nginx proxy for secure dashboard exposure
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"  # Public HTTP (add 443 for HTTPS later)
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - dashboard
+    restart: unless-stopped
+
+# Only named for MQTT persistence (no file conflicts)
+volumes:
+  mosquitto-data:
