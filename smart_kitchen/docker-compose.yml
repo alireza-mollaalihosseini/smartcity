@@ -5,7 +5,7 @@ services:
     ports:
       - "1883:1883"  # Local access
     volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf  # Optional: Add auth/TLS later
+      - ./config:/mosquitto/config  # Optional: Add auth/TLS later
     restart: unless-stopped
 
   # Your App (simulation + ingestion + alerts + models)
