@@ -21,3 +21,15 @@ models/*.pkl
 # IDEs
 .vscode/
 .idea/
+
+# Keys
+*.pem
+.ssh/
+aws-keys/
+
+
+# AWS IoT Certs
+certs/
+*.pem
+*.crt
+*.key
