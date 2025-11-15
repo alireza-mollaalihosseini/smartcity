@@ -122,8 +122,8 @@ services:
       - ./alerts:/app/alerts  # Bind for dir
       - ./certs:/app/certs  # New: IoT Core certs
     environment:
-      - MQTT_ENDPOINT=your-iot-endpoint.iot.us-east-1.amazonaws.com  # Replace with your endpoint
-      - MQTT_PORT=8883
+      - MQTT_ENDPOINT=${MQTT_ENDPOINT}
+      - MQTT_PORT=${MQTT_PORT}
       - CA_PATH=/app/certs/AmazonRootCA1.pem
       - CERT_PATH=/app/certs/device.pem.crt
       - KEY_PATH=/app/certs/device.pem.key
@@ -145,8 +145,8 @@ services:
       - ./alerts:/app/alerts
       - ./certs:/app/certs  # Shared certs
     environment:
-      - MQTT_ENDPOINT=your-iot-endpoint.iot.us-east-1.amazonaws.com  # Same as app
-      - MQTT_PORT=8883
+      - MQTT_ENDPOINT=${MQTT_ENDPOINT}
+      - MQTT_PORT=${MQTT_PORT}
       - CA_PATH=/app/certs/AmazonRootCA1.pem
       - CERT_PATH=/app/certs/device.pem.crt
       - KEY_PATH=/app/certs/device.pem.key
