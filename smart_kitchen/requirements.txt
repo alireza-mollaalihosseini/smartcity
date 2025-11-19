@@ -10,3 +10,4 @@ paho-mqtt
 flask
 streamlit-authenticator
 python-dotenv
+pyjwt
