@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   // CHANGE THIS TO YOUR PUBLIC EC2 / NGINX URL
-  static const String baseUrl = 'http://YOUR-PUBLIC-IP-OR-DOMAIN:8080'; // e.g. http://54.123.45.67:8080
+  static const String baseUrl = 'http://localhost:8080'; // e.g. http://54.123.45.67:8080
 
   static Future<Map<String, dynamic>?> login(String email, String password) async {
     try {
