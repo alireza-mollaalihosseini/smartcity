@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../services/firebase_service.dart';
+import 'predictor_screen.dart';
+
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
