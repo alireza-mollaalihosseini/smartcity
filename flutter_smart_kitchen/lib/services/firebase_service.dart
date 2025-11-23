@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'api_service.dart';
+// Removed: import 'package:flutter/foundation.dart';
 
 class AuthProvider with ChangeNotifier {
   User? _user;
@@ -37,7 +38,7 @@ class AuthProvider with ChangeNotifier {
       alert: true, badge: true, sound: true, provisional: false,
     );
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('🔔 Notifications authorized');
+      debugPrint('🔔 Notifications authorized');
     }
   }
 
@@ -50,7 +51,7 @@ class AuthProvider with ChangeNotifier {
         tenantId: _tenantId!,
         fcmToken: token,
       );
-      print('✅ FCM Token sent to backend');
+      debugPrint('✅ FCM Token sent to backend');
     }
   }
 
@@ -112,7 +113,7 @@ class AuthProvider with ChangeNotifier {
         return true;
       }
     } catch (e) {
-      print('Sign in failed: $e');
+      debugPrint('Sign in failed: $e');
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login failed: ${e.toString()}')),
@@ -138,5 +139,5 @@ class AuthProvider with ChangeNotifier {
 // Required top-level function for background messages
 @pragma('vm:entry-point')
 Future<void> _backgroundHandler(RemoteMessage message) async {
-  print("🔔 Background notification: ${message.messageId}");
+  debugPrint("🔔 Background notification: ${message.messageId}");
 }

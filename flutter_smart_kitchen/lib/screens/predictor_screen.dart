@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,19 +60,19 @@ class _PredictorScreenState extends State<PredictorScreen> {
                     height: 300,
                     child: LineChart(
                       LineChartData(
-                        gridData: const FlGridData(show: true),
+                        gridData: const FlGridData(show: true),  // const kept (supported)
                         titlesData: FlTitlesData(
                           bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: true, getTitlesWidget: (v, _) => Text("${v.toInt() + 1}d"))),
                           leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true)),
                         ),
-                        borderData: FlBorderData(show: true),
+                        borderData: FlBorderData(show: true),  // Removed const (not supported)
                         lineBarsData: [
                           LineChartBarData(
                             spots: spots,
                             isCurved: true,
                             barWidth: 4,
                             color: Colors.orange,
-                            dotData: const FlDotData(show: true),
+                            dotData: const FlDotData(show: true),  // const kept (supported)
                           ),
                         ],
                       ),
@@ -79,7 +81,7 @@ class _PredictorScreenState extends State<PredictorScreen> {
             const SizedBox(height: 20),
             const Card(
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.all(16),  // Can add const if linter flags later
                 child: Text("🔮 AI predicts 22% higher usage next weekend — schedule maintenance!", style: TextStyle(fontSize: 16)),
               ),
             ),

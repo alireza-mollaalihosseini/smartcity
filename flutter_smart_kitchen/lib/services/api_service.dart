@@ -1,10 +1,11 @@
 // services/api_service.dart
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart';
 
 class ApiService {
   // CHANGE THIS TO YOUR PUBLIC EC2 / NGINX URL
-  static const String baseUrl = 'http://localhost:8080'; // e.g. http://54.123.45.67:8080
+  static const String baseUrl = 'http://192.168.178.23:8080'; // e.g. http://54.123.45.67:8080
 
   static Future<Map<String, dynamic>?> login(String email, String password) async {
     try {
@@ -18,7 +19,7 @@ class ApiService {
         return json.decode(response.body) as Map<String, dynamic>;
       }
     } catch (e) {
-      print('Login API error: $e');
+      debugPrint('Login API error: $e');
     }
     return null;
   }
@@ -41,7 +42,7 @@ class ApiService {
         }),
       );
     } catch (e) {
-      print('Failed to register FCM token: $e');
+      debugPrint('Failed to register FCM token: $e');
     }
   }
 
@@ -75,7 +76,7 @@ class ApiService {
         return json.decode(response.body) as List<dynamic>;
       }
     } catch (e) {
-      print('API Error ($url): $e');
+      debugPrint('API Error ($url): $e');
     }
     return [];
   }
