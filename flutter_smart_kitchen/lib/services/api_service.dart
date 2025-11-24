@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 
 class ApiService {
   // CHANGE THIS TO YOUR PUBLIC EC2 / NGINX URL
-  static const String baseUrl = 'http://192.168.178.23:8080'; // e.g. http://54.123.45.67:8080
+  static const String baseUrl = 'http://192.168.178.23'; // e.g. http://54.123.45.67:8080
 
   static Future<Map<String, dynamic>?> login(String email, String password) async {
     try {
