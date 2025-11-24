@@ -62,7 +62,7 @@ def health():
         "tenant_id": TENANT_ID
     })
 
-@app.route('/api/login', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def api_login():
     data = request.get_json(silent=True) or {}
     email = data.get('email')
@@ -84,7 +84,7 @@ def api_login():
     return jsonify({"error": "Invalid credentials"}), 401
 
 
-@app.route('/api/devices')
+@app.route('/devices')
 @token_required
 def api_devices():
     tenant_id = request.current_user['tenant_id']
@@ -95,7 +95,7 @@ def api_devices():
     return jsonify(df['device'].tolist())
 
 
-@app.route('/api/live-data/<device>')
+@app.route('/live-data/<device>')
 @token_required
 def api_live_data(device):
     tenant_id = request.current_user['tenant_id']
@@ -112,7 +112,7 @@ def api_live_data(device):
     return jsonify(df[::-1].to_dict(orient='records'))
 
 
-@app.route('/api/predictions')
+@app.route('/predictions')
 @token_required
 def api_predictions():
     tenant_id = request.current_user['tenant_id']
@@ -125,7 +125,7 @@ def api_predictions():
     return jsonify(df.to_dict(orient='records'))
 
 
-@app.route('/api/alerts')
+@app.route('/alerts')
 @token_required
 def api_alerts():
     tenant_id = request.current_user['tenant_id']

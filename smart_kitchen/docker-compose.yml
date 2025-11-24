@@ -245,7 +245,7 @@ services:
     build: .
     ports:
       - "8080:8080"
-      - "80:80"
+      # - "80:80"
     volumes:
       - ./kitchen.db:/app/kitchen.db
       - ./models:/app/models
@@ -268,7 +268,8 @@ services:
       - GOOGLE_TOKEN=${GOOGLE_TOKEN:-}
       - GOOGLE_ENTERPRISE_ID=${GOOGLE_ENTERPRISE_ID:-enterprises/project-default}
       - JWT_SECRET=your-super-secret-jwt-key-here-256-bits
-    command: python main_demo.py
+    # command: python main_demo.py
+    command: python main_app.py
     restart: unless-stopped
 
   dashboard:
@@ -304,7 +305,7 @@ services:
     image: nginx:alpine
     ports:
       - "80:80"
-      - "8080:8080"
+      # - "8080:8080"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:

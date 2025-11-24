@@ -4,3 +4,20 @@
 [ALERT] oven: High anomaly rate detected (7.5%)
 [ALERT] oven: High anomaly rate detected (7.5%)
 [ALERT] oven: High anomaly rate detected (7.5%)
+[2025-11-24T17:45:06.799697] High oven temperature: 206.46°C!
+[2025-11-24T17:53:06.914930] High oven temperature: 200.53°C!
+[2025-11-24T17:53:46.808306] High oven temperature: 204.07°C!
+[2025-11-24T17:55:26.812626] High oven temperature: 202.86°C!
+[2025-11-24T17:58:46.819333] High oven temperature: 202.51°C!
+[2025-11-24T17:58:56.817940] High oven temperature: 200.5°C!
+[2025-11-24T18:00:36.823758] High oven temperature: 214.19°C!
+[2025-11-24T18:00:46.820914] High oven temperature: 206.35°C!
+[2025-11-24T18:02:46.826221] High oven temperature: 202.42°C!
+[2025-11-24T18:21:49.066080] High oven temperature: 201.13°C!
+[2025-11-24T18:28:39.073014] High oven temperature: 201.69°C!
+[2025-11-24T18:30:19.072790] High oven temperature: 200.27°C!
+[2025-11-24T18:31:59.068189] High oven temperature: 200.62°C!
+[2025-11-24T18:35:49.071249] High oven temperature: 204.53°C!
+[2025-11-24T18:43:03.862062] High oven temperature: 202.53°C!
+[2025-11-24T18:45:53.867413] High oven temperature: 203.22°C!
+[2025-11-24T18:55:31.066225] High oven temperature: 204.29°C!
