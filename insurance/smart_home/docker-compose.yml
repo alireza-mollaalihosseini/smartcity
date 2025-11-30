@@ -1,0 +1,68 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./smart_home.db:/app/smart_home.db
+      - ./models:/app/models
+      - ./alerts:/app/alerts
+      - ./certs:/app/certs:ro
+      - ./integrations.py:/app/integrations.py:ro
+    environment:
+      - MQTT_ENDPOINT=${MQTT_ENDPOINT}
+      - MQTT_PORT=${MQTT_PORT}
+      - CA_PATH=/app/certs/AmazonRootCA1.pem
+      - CERT_PATH=/app/certs/device.pem.crt
+      - KEY_PATH=/app/certs/device.pem.key
+      - DB_PATH=/app/smart_home.db
+      - MODELS_PATH=/app/models
+      - ALERTS_PATH=/app/alerts
+      - TENANT_ID=${TENANT_ID}
+      - HA_BROKER=${HA_BROKER:-}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
+      - GOOGLE_SECRET=${GOOGLE_SECRET:-}
+      - GOOGLE_TOKEN=${GOOGLE_TOKEN:-}
+      - GOOGLE_ENTERPRISE_ID=${GOOGLE_ENTERPRISE_ID:-enterprises/project-default}
+      - JWT_SECRET=your-super-secret-jwt-key-here-256-bits
+    command: python main.py
+    restart: unless-stopped
+
+  dashboard:
+    build: .
+    depends_on:
+      - app
+    volumes:
+      - ./dashboard:/app/dashboard
+      - ./smart_home.db:/app/smart_home.db
+      - ./models:/app/models
+      - ./alerts:/app/alerts
+      - ./certs:/app/certs:ro
+    environment:
+      - MQTT_ENDPOINT=${MQTT_ENDPOINT}
+      - MQTT_PORT=${MQTT_PORT}
+      - CA_PATH=/app/certs/AmazonRootCA1.pem
+      - CERT_PATH=/app/certs/device.pem.crt
+      - KEY_PATH=/app/certs/device.pem.key
+      - DB_PATH=/app/smart_home.db
+      - MODELS_PATH=/app/models
+      - ALERTS_PATH=/app/alerts
+      - TENANT_ID=${TENANT_ID}
+      - HA_BROKER=${HA_BROKER:-}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
+      - GOOGLE_SECRET=${GOOGLE_SECRET:-}
+      - GOOGLE_TOKEN=${GOOGLE_TOKEN:-}
+      - GOOGLE_ENTERPRISE_ID=${GOOGLE_ENTERPRISE_ID:-enterprises/project-default}
+      # No default for CREDENTIALS/COOKIE—use .env
+    command: streamlit run dashboard/dashboard_app.py --server.port=8501 --server.address=0.0.0.0
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - dashboard
+    restart: unless-stopped

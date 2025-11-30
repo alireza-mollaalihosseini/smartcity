@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pandas
+pydantic
+requests
+streamlit
+matplotlib
+scikit-learn
+paho-mqtt
+flask
+streamlit-authenticator
+python-dotenv
+pyjwt

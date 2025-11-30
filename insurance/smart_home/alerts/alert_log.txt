@@ -1,0 +1,52 @@
+[2025-11-30T12:12:32.133441] High humidity: 74.75% - Mold risk alert.
+[2025-11-30T12:15:02.142601] High humidity: 74.73% - Mold risk alert.
+[2025-11-30T12:15:12.144578] Unexpected motion detected - Potential intrusion.
+[2025-11-30T12:15:32.147515] Unexpected motion detected - Potential intrusion.
+[2025-11-30T12:18:02.147137] High humidity: 74.54% - Mold risk alert.
+[2025-11-30T12:18:02.202321] Door left open - Security breach or ventilation issue.
+[2025-11-30T12:18:12.151844] Water leak detected! Moisture: 83.38%.
+[2025-11-30T12:18:22.148958] Freezing temperature: -1.51°C - Risk of pipe burst.
+[2025-11-30T12:20:52.146334] High humidity: 71.11% - Mold risk alert.
+[2025-11-30T12:21:22.151327] Unexpected motion detected - Potential intrusion.
+[2025-11-30T12:22:02.151964] Unexpected motion detected - Potential intrusion.
+[2025-11-30T12:22:22.150486] Door left open - Security breach or ventilation issue.
+[2025-11-30T12:22:32.151330] Unexpected motion detected - Potential intrusion.
+[2025-11-30T12:23:02.148248] Door left open - Security breach or ventilation issue.
+[2025-11-30T12:23:12.151935] High humidity: 72.04% - Mold risk alert.
+[2025-11-30T12:23:32.150137] Door left open - Security breach or ventilation issue.
+[2025-11-30T12:23:42.152784] Door left open - Security breach or ventilation issue.
+[2025-11-30T12:24:02.155092] Freezing temperature: 0.68°C - Risk of pipe burst.
+[2025-11-30T12:24:02.207244] Door left open - Security breach or ventilation issue.
+[2025-11-30T12:24:52.153683] Door left open - Security breach or ventilation issue.
+[2025-11-30T16:58:30.412327] Unexpected motion detected - Potential intrusion.
+[2025-11-30T16:59:00.412238] Freezing temperature: 4.49°C - Risk of pipe burst.
+[2025-11-30T16:59:10.413152] Unexpected motion detected - Potential intrusion.
+[2025-11-30T16:59:30.416386] Door left open - Security breach or ventilation issue.
+[2025-11-30T16:59:30.463829] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:00:20.415557] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:01:10.419080] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:02:10.413826] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:02:50.417678] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:03:50.416893] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:04:40.412519] High humidity: 77.82% - Mold risk alert.
+[2025-11-30T17:05:00.417201] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:07:00.422812] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:08:20.424722] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:09:20.421744] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:09:30.429302] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:09:30.473348] Freezing temperature: 4.92°C - Risk of pipe burst.
+[2025-11-30T17:10:20.418990] High humidity: 73.91% - Mold risk alert.
+[2025-11-30T17:10:40.417641] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:11:40.417046] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:12:30.426810] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:13:10.418454] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:13:40.416648] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:14:00.417466] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:14:20.415954] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:14:20.450240] Smoke detected! 87.62ppm - Potential fire risk.
+[2025-11-30T17:15:00.421590] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:16:00.437126] Door left open - Security breach or ventilation issue.
+[2025-11-30T17:16:20.427180] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:16:50.420002] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:18:00.424753] Unexpected motion detected - Potential intrusion.
+[2025-11-30T17:18:20.418624] Door left open - Security breach or ventilation issue.
