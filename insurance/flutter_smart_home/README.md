@@ -1,16 +1,18 @@
-# flutter_smart_home
+# Smart Home – Flutter app (insurance demo)
 
-A new Flutter project.
+Policyholder app for the [smart home backend](../smart_home). It shares its architecture with the
+[smart kitchen app](../../flutter_smart_kitchen): Firebase Authentication plus a backend JWT for login,
+the device list, live charts, predictions and the alert history, all served by the Flask API behind
+Nginx (`/api/*`).
 
-## Getting Started
+## Setup
 
-This project is a starting point for a Flutter application.
+1. Set `ApiService.baseUrl` in `lib/services/api_service.dart` to your backend host.
+2. Connect your own Firebase project (`flutterfire configure`) and replace
+   `android/app/google-services.json` and the Firebase options in `lib/main.dart`.
+3. Run the app:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   ```bash
+   flutter pub get
+   flutter run
+   ```

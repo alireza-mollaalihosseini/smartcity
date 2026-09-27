@@ -33,3 +33,13 @@ certs/
 *.pem
 *.crt
 *.key
+# Secrets and local configuration
+.env.*
+!.env.example
+secrets.toml
+.streamlit/
+
+# Local databases and runtime logs
+*.db
+*.sqlite3
+alerts/*.log
